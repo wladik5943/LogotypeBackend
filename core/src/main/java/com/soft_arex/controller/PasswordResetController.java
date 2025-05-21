@@ -8,6 +8,7 @@ import com.soft_arex.email.model.VerifyEmailRequest;
 import com.soft_arex.entity.User;
 import com.soft_arex.service.email.PasswordResetService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
@@ -30,9 +31,15 @@ public class PasswordResetController implements PasswordResetRestAPI {
 
     @Override
     public ResponseEntity<?> verify(CodeVerifyRequest req, Authentication auth) {
-        String email = (auth != null) ? ((User) auth.getPrincipal()).getEmail() : req.getEmail();
-        passwordResetService.verifyCode(email, req.getCode());
-        return ResponseEntity.ok("Код подтверждён");
+        try {
+            String email = (auth != null) ? ((User) auth.getPrincipal()).getEmail() : req.getEmail();
+            passwordResetService.verifyCode(email, req.getCode());
+            return ResponseEntity.ok("Код подтверждён");
+        }catch (Exception ex) {
+            ex.printStackTrace(); // покажет в Heroku log
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error: " + ex.getMessage());
+        }
     }
 
     @Override
