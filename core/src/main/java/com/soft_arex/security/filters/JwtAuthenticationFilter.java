@@ -1,6 +1,8 @@
 package com.soft_arex.security.filters;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.soft_arex.entity.User;
+import com.soft_arex.exeption.ExceptionResponse;
 import com.soft_arex.service.security.JwtService;
 import com.soft_arex.service.security.impl.JwtServiceImpl;
 import com.soft_arex.service.user.impl.UserServiceImpl;
@@ -66,7 +68,13 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
         }catch (UsernameNotFoundException | JwtException ex) {
             SecurityContextHolder.clearContext();
-            throw new BadCredentialsException("Invalid token or user not found", ex);
+            // Делегируем в entry point
+            request.setAttribute("SPRING_SECURITY_LAST_EXCEPTION", ex);
+            // вызов AuthenticationEntryPoint
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.setContentType("application/json");
+            ExceptionResponse responseError = new ExceptionResponse(401, "Unauthorized", ex.getMessage());
+            new ObjectMapper().writeValue(response.getOutputStream(), responseError);
         }
     }
 }
