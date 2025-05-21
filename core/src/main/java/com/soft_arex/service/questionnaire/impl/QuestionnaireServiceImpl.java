@@ -68,7 +68,6 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
         Questionnaire q = questionnaireRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Not found"));
         q.setTitle(dto.getTitle());
-        q.setActive(dto.isActive());
         q.setFields(fieldRepository.findAllWithOptionsByIds(dto.getFieldIds()));
         return questionnaireMapper.toResponse(questionnaireRepository.save(q));
     }
