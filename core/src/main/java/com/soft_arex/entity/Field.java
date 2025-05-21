@@ -22,7 +22,7 @@ public class Field {
 
     @ElementCollection
     @BatchSize(size = 100)
-    @CollectionTable(name = "field_options",schema = "softarex", joinColumns = @JoinColumn(name = "field_id"))
+    @CollectionTable(name = "field_options", joinColumns = @JoinColumn(name = "field_id"))
     @Column(name = "option_value")
     private List<String> options;
 
