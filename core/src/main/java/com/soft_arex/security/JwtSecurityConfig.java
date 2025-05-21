@@ -57,7 +57,7 @@ public class JwtSecurityConfig {
                                 .requestMatchers("/oauth/sign-up").permitAll()
                                 .requestMatchers("/oauth/sign-in").permitAll()
                                 .requestMatchers("/oauth/refresh-token").permitAll()
-                                .requestMatchers("/oauth/me").permitAll()
+                                .requestMatchers("/oauth/me").authenticated()
                                 .requestMatchers(HttpMethod.GET,"/fields").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/fields").authenticated()
                                 .requestMatchers(HttpMethod.PUT,"/fields/**").authenticated()

@@ -31,15 +31,10 @@ public class PasswordResetController implements PasswordResetRestAPI {
 
     @Override
     public ResponseEntity<?> verify(CodeVerifyRequest req, Authentication auth) {
-        try {
             String email = (auth != null) ? ((User) auth.getPrincipal()).getEmail() : req.getEmail();
             passwordResetService.verifyCode(email, req.getCode());
             return ResponseEntity.ok("Код подтверждён");
-        }catch (Exception ex) {
-            ex.printStackTrace(); // покажет в Heroku log
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body("Error: " + ex.getMessage());
-        }
+
     }
 
     @Override
