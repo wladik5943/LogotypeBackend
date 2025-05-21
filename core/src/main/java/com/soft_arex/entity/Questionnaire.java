@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(schema = "softarex", name = "questionnaire")
+@Table( name = "questionnaire")
 public class Questionnaire {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -12,7 +12,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(schema = "softarex", name = "user")
+@Table(name = "user")
 public class User implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

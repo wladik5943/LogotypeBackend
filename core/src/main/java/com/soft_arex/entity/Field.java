@@ -9,7 +9,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(schema = "softarex", name = "field")
+@Table( name = "field")
 public class Field {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
