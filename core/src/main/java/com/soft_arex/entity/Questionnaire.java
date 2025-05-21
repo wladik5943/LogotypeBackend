@@ -18,7 +18,7 @@ public class Questionnaire {
     @ManyToOne
     private User user;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "questionnaire", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Answer> answers;
 
     @BatchSize(size = 100)
