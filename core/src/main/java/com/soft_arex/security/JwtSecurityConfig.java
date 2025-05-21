@@ -49,6 +49,16 @@ public class JwtSecurityConfig {
         http.csrf(AbstractHttpConfigurer::disable)
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
+                                .requestMatchers(
+                                        "/", "/index.html", "/favicon.ico",
+                                        "/static/**", "/manifest.json",
+                                        "/asset-manifest.json",
+                                        "/css/**", "/js/**", "/img/**"
+                                ).permitAll()
+
+
+
+
                                 .requestMatchers("/ws").permitAll()
                                 .requestMatchers("/ws/**","/topic/**").permitAll()
                                 .requestMatchers("/oauth/sign-up").permitAll()
