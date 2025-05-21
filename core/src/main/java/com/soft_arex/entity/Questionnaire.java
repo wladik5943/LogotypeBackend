@@ -18,6 +18,9 @@ public class Questionnaire {
     @ManyToOne
     private User user;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Answer> answers;
+
     @BatchSize(size = 100)
     @ManyToMany()
     @JoinTable(
