@@ -78,7 +78,7 @@ public class JwtSecurityConfig {
                                 .requestMatchers("/questionnaires/mine").authenticated()
                                 .requestMatchers("/password/**").permitAll()
                                 .requestMatchers("/user/edit-profile").authenticated()
-
+                                .requestMatchers(HttpMethod.GET,"/").permitAll()
 //                        .requestMatchers("/**").permitAll()
                 )
 
