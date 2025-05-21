@@ -41,6 +41,7 @@ D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\entity\Answer.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\repository\QuestionnaireRepository.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\service\email\VerificationCodeService.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\mapper\AnswerFieldDTOMapper.java
+D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\config\RedisConfig.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\config\WebSocketConfig.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\mapper\AnswerMapper.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\service\user\impl\UserServiceImpl.java

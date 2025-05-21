@@ -42,6 +42,7 @@ com\soft_arex\exeption\ExceptionResponse.class
 com\soft_arex\security\JwtController.class
 com\soft_arex\repository\UserRepository.class
 com\soft_arex\config\AuthHandshakeInterceptor.class
+com\soft_arex\config\RedisConfig.class
 com\soft_arex\exeption\UserException.class
 com\soft_arex\repository\FieldRepository.class
 com\soft_arex\entity\Questionnaire.class
