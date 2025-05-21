@@ -1,10 +1,11 @@
 package com.soft_arex.exeption;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
-
+@AllArgsConstructor
 @Data
 public class ExceptionResponse {
     private HttpStatus status;
@@ -12,6 +13,14 @@ public class ExceptionResponse {
     private String message;
     private int code;
 
-    public ExceptionResponse(int i, String unauthorized, String message) {
+    public ExceptionResponse() {
     }
+
+    public ExceptionResponse(String message, HttpStatus status, int code) {
+        this.message = message;
+        this.status = status;
+        this.code = code;
+    }
+
+
 }
