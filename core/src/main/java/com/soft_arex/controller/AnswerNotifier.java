@@ -25,13 +25,13 @@ public class AnswerNotifier {
 
     public void notifyAnswerCount(int count, Answer saved) {
         messagingTemplate.convertAndSend(
-                "/topic/questionnaire/" + saved.getQuestionnaire().getId() + "/answers/count",
+                "/topic/test/" + saved.getQuestionnaire().getId() + "/answers/count",
                 Map.of("count", count)
         );
 
         AnswerResponseMessage dto = answerMapper.toMessage(saved);   // сконвертируйте в DTO
         messagingTemplate.convertAndSend(
-                "/topic/questionnaire/" + saved.getQuestionnaire().getId() + "/answers/new",
+                "/topic/test/" + saved.getQuestionnaire().getId() + "/answers/new",
                 dto
         );
     }
