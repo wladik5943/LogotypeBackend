@@ -40,6 +40,7 @@ public class JwtSecurityConfig {
     @Bean
     public SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
+                .exceptionHandling(e -> e.authenticationEntryPoint(restAuthenticationEntryPoint))
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
                                 .requestMatchers(
