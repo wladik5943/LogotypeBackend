@@ -18,6 +18,7 @@ D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\security\filters\J
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\exeption\Handler.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\repository\AnswerFieldRepository.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\service\answer\impl\AnswerServiceImpl.java
+D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\config\WebConfig.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\service\field\impl\FieldServiceImpl.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\controller\AnswerNotifier.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\entity\Questionnaire.java

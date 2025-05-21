@@ -1,4 +1,5 @@
 com\soft_arex\mapper\AnswerFieldDTOMapper.class
+com\soft_arex\config\WebConfig.class
 com\soft_arex\mapper\UserMapper.class
 com\soft_arex\Main.class
 com\soft_arex\mapper\AnswerMapperImpl.class
