@@ -29,7 +29,7 @@ public class AnswerNotifier {
                 Map.of("count", count)
         );
 
-        AnswerResponseMessage dto = answerMapper.toMessage(saved);   // сконвертируйте в DTO
+        AnswerResponseMessage dto = answerMapper.toMessage(saved);
         messagingTemplate.convertAndSend(
                 "/topic/test/" + saved.getQuestionnaire().getId() + "/answers/new",
                 dto
