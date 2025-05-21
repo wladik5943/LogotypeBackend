@@ -15,6 +15,7 @@ import com.soft_arex.service.questionnaire.QuestionnaireService;
 import com.soft_arex.service.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +80,7 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
                 .map(questionnaireMapper::toResponse).toList();
     }
 
+    @Transactional
     public void delete(Long id) {
         questionnaireRepository.deleteById(id);
     }
