@@ -19,7 +19,7 @@ public class Questionnaire {
     private User user;
 
     @BatchSize(size = 100)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JoinTable(
             name = "questionnaire_field",
             joinColumns = @JoinColumn(name = "questionnaire_id"),
