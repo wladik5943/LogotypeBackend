@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User register(UserCreateRequest userCreateRequest) {
+    public User register(UserCreateRequest userCreateRequest)  {
         var user = userMapper.toEntity(userCreateRequest);
         String encode = standartPasswordEncoder.encode(user.getPassword());
         user.setPassword(encode);

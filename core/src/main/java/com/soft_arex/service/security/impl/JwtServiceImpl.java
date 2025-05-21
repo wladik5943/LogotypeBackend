@@ -9,6 +9,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,11 +30,14 @@ public class JwtServiceImpl implements JwtService {
     private final UserRepository userRepository;
 
     public User getUserByToken() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication != null && authentication.getPrincipal() instanceof User user) {
-            return user;
+        try {
+
+            return (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        }catch (Exception e) {
+            SecurityContextHolder.clearContext();
+            throw new BadCredentialsException("Invalid token", e);
         }
-        throw new RuntimeException("No authenticated user found");
     }
 
 

@@ -64,7 +64,7 @@ public class JwtSecurityConfig {
                                 .requestMatchers(HttpMethod.DELETE,"/fields").authenticated()
                                 .requestMatchers("/answer").permitAll()
                                 .requestMatchers(HttpMethod.GET,"/answer/**").authenticated()
-                                .requestMatchers(HttpMethod.GET,"/test","/questionnaires/all","/questionnaires/**").permitAll()
+                                .requestMatchers(HttpMethod.GET,"/test","/test/all","/questionnaires/**").permitAll()
                                 .requestMatchers(HttpMethod.POST,"/test").authenticated()
                                 .requestMatchers(HttpMethod.PATCH,"/test/{id}/status").authenticated()
                                 .requestMatchers(HttpMethod.PUT,"/test/**").authenticated()
