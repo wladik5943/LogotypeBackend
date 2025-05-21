@@ -35,6 +35,7 @@ D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\exeption\UserExcep
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\security\JwtProperties.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\service\email\impl\EmailServiceImpl.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\security\filters\UserDetailServiceImpl.java
+D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\controller\ReactForwardingController.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\service\security\JwtService.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\entity\Answer.java
 D:\progects\SoftArex\backend\core\src\main\java\com\soft_arex\repository\QuestionnaireRepository.java

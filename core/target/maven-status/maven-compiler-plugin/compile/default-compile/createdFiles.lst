@@ -54,6 +54,7 @@ com\soft_arex\controller\UserController.class
 com\soft_arex\mapper\QuestionnaireMapperImpl.class
 com\soft_arex\service\security\impl\SignServiceImpl.class
 com\soft_arex\service\security\SignService.class
+com\soft_arex\controller\ReactForwardingController.class
 com\soft_arex\service\user\UserService.class
 com\soft_arex\mapper\AnswerFieldDTOMapperImpl.class
 com\soft_arex\mapper\AnswerMapper.class
