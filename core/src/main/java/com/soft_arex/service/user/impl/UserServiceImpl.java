@@ -5,6 +5,7 @@ import com.soft_arex.enums.UserRole;
 import com.soft_arex.exeption.UserException;
 import com.soft_arex.mapper.UserMapper;
 import com.soft_arex.repository.UserRepository;
+import com.soft_arex.service.security.JwtService;
 import com.soft_arex.service.user.UserService;
 import com.soft_arex.user.model.UserCreateRequest;
 import com.soft_arex.user.model.UserResponse;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
     private final PasswordEncoder standartPasswordEncoder;
     private final UserMapper userMapper;
     private final UserRepository userRepository;
-
+    private final JwtService jwtService;
 
     @Override
     public User loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -36,7 +37,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserResponse editUser(UserCreateRequest userCreateRequest) {
         User req = userMapper.toEntity(userCreateRequest);
-        User user = userRepository.findByEmail(req.getEmail());
+        User user = jwtService.getUserByToken();
         req.setId(user.getId());
         req.setPassword(user.getPassword());
         userRepository.save(req);

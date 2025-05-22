@@ -17,9 +17,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -40,10 +42,16 @@ public class AnswerServiceImpl implements AnswerService {
     private final AnswerMapper answerMapper;
     private final JwtService jwtService;
 
+    @Transactional(readOnly = true)
     public Page<AnswerResponse> getAnswersByTestId(Long testId, int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return answerRepository.findByQuestionnaireId(testId, pageable)
-                .map(answerMapper::toResponse);
+        Page<Answer> byQuestionnaireId = answerRepository.findByQuestionnaireId(testId, pageable);
+        if(!byQuestionnaireId.getContent().isEmpty())
+           if(byQuestionnaireId.getContent().get(0).getQuestionnaire().getUser().getId() != jwtService.getUserByToken().getId())
+               throw new UserException("Access denied", HttpStatus.FORBIDDEN);
+
+        return byQuestionnaireId.map(answerMapper::toResponse);
+
     }
 
 

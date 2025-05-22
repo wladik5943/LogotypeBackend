@@ -6,6 +6,7 @@ import com.soft_arex.repository.UserRepository;
 import com.soft_arex.service.email.EmailService;
 import com.soft_arex.service.email.PasswordResetService;
 import com.soft_arex.service.email.VerificationCodeService;
+import com.soft_arex.service.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -23,13 +24,13 @@ public class PasswordResetServiceImpl implements PasswordResetService {
     private final EmailService emailService;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-
+    private final JwtService jwtService;
     private final VerificationCodeService verificationCodeService;
 
 
     public void sendCode(String email) {
-        User user = userRepository.findByEmail(email);
-        if (user == null) throw new UserException("Пользователь не найден", HttpStatus.NOT_FOUND);
+        User user = jwtService.getUserByToken();
+        if (user == null) throw new UserException("пройдите авторизацтю", HttpStatus.UNAUTHORIZED);
 
         String code = String.valueOf(new Random().nextInt(900000) + 100000);
         verificationCodeService.saveCode(email, code, 5);

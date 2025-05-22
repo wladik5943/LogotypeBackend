@@ -8,6 +8,7 @@ import com.soft_arex.entity.AnswerField;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+
 @Mapper(componentModel = "spring")
 public interface AnswerMapper {
 
@@ -22,4 +23,6 @@ public interface AnswerMapper {
 
     @Mapping(source = "field.id", target = "fieldId")
     AnswerFieldDTO map(AnswerField field);
+
+
 }

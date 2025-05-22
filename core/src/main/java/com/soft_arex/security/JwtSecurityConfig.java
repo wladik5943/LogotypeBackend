@@ -23,7 +23,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
+import java.util.List;
 
 
 @Configuration
@@ -43,38 +47,35 @@ public class JwtSecurityConfig {
                 .exceptionHandling(e -> e.authenticationEntryPoint(restAuthenticationEntryPoint))
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(authorize -> authorize
-                                .requestMatchers(
-                                        "/", "/index.html", "/favicon.ico",
-                                        "/static/**", "/manifest.json",
-                                        "/asset-manifest.json",
-                                        "/css/**", "/js/**", "/img/**"
-                                ).permitAll()
+                        .requestMatchers(
+                                "/", "/index.html", "/favicon.ico",
+                                "/static/**", "/manifest.json",
+                                "/asset-manifest.json",
+                                "/css/**", "/js/**", "/img/**"
+                        ).permitAll()
 
 
-
-
-                                .requestMatchers("/ws").permitAll()
-                                .requestMatchers("/ws/**","/topic/**").permitAll()
-                                .requestMatchers("/oauth/sign-up").permitAll()
-                                .requestMatchers("/oauth/sign-in").permitAll()
-                                .requestMatchers("/oauth/refresh-token").permitAll()
-                                .requestMatchers("/oauth/me").authenticated()
-                                .requestMatchers(HttpMethod.GET,"/fields").permitAll()
-                                .requestMatchers(HttpMethod.POST,"/fields").authenticated()
-                                .requestMatchers(HttpMethod.PUT,"/fields/**").authenticated()
-                                .requestMatchers(HttpMethod.DELETE,"/fields/**").authenticated()
-                                .requestMatchers("/answer").permitAll()
-                                .requestMatchers(HttpMethod.GET,"/answer/**").authenticated()
-                                .requestMatchers(HttpMethod.GET,"/test","/test/all","/questionnaires/**").permitAll()
-                                .requestMatchers(HttpMethod.POST,"/test").authenticated()
-                                .requestMatchers(HttpMethod.PATCH,"/test/{id}/status").authenticated()
-                                .requestMatchers(HttpMethod.DELETE, "/test/**").authenticated()
-                                .requestMatchers(HttpMethod.PUT,"/test/**").authenticated()
-                                .requestMatchers("/test/mine").authenticated()
-                                .requestMatchers("/password/**").permitAll()
-                                .requestMatchers("/user/edit-profile").authenticated()
-                                .anyRequest().permitAll()
-//                        .requestMatchers("/**").permitAll()
+                        .requestMatchers("/ws").permitAll()
+                        .requestMatchers("/ws/**", "/topic/**").permitAll()
+                        .requestMatchers("/oauth/sign-up").permitAll()
+                        .requestMatchers("/oauth/sign-in").permitAll()
+                        .requestMatchers("/oauth/refresh-token").permitAll()
+                        .requestMatchers("/oauth/me").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/fields").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/fields").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/fields/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/fields/**").authenticated()
+                        .requestMatchers("/answer").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/answer/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/test", "/test/all", "/questionnaires/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/test").authenticated()
+                        .requestMatchers(HttpMethod.PATCH, "/test/{id}/status").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/test/**").authenticated()
+                        .requestMatchers(HttpMethod.PUT, "/test/**").authenticated()
+                        .requestMatchers("/test/mine").authenticated()
+                        .requestMatchers("/password/**").permitAll()
+                        .requestMatchers("/user/edit-profile").authenticated()
+                        .anyRequest().permitAll()
                 )
 
                 .addFilterBefore(jwtAuthenticationFilter, BasicAuthenticationFilter.class).exceptionHandling(ex -> {
@@ -84,6 +85,7 @@ public class JwtSecurityConfig {
         return http.build();
 
     }
+
     @Bean
     public static PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -94,16 +96,17 @@ public class JwtSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
-
 //    @Bean
-//    public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder) {
-//        UserDetails user = User.builder()
-//                .username("user")
-//                .password(passwordEncoder.encode("password"))
-//                .roles("USER")
-//                .build();
-//        return new InMemoryUserDetailsManager(user);
+//    public CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration config = new CorsConfiguration();
+//        config.setAllowedOrigins(List.of("http://localhost:3000"));
+//        config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//        config.setAllowCredentials(true);
+//        config.setAllowedHeaders(List.of("*"));
 //
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", config);
+//        return source;
 //    }
+
 }

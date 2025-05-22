@@ -20,6 +20,10 @@ public class Field {
     private boolean required;
     private boolean active;
 
+
+    @ManyToMany(mappedBy = "fields")
+    private List<Questionnaire> questionnaires;
+
     @ElementCollection
     @BatchSize(size = 100)
     @CollectionTable(name = "field_options", joinColumns = @JoinColumn(name = "field_id"))

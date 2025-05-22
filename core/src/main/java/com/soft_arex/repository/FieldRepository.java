@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface FieldRepository extends JpaRepository<Field, Long> {
@@ -19,4 +20,6 @@ public interface FieldRepository extends JpaRepository<Field, Long> {
 
     Page<Field> findByUserIdOrderById(Long userId, Pageable pageable);
 
+    @Query("SELECT f FROM Field f LEFT JOIN FETCH f.questionnaires WHERE f.id = :id")
+    Optional<Field> findWithQuestionnairesById(@Param("id") Long id);
 }
