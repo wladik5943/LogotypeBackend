@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface QuestionnaireService {
 
+    List<QuestionnaireResponseDTO> getActiveQuestionnaire();
     QuestionnaireResponseDTO updateStatus(Long id);
     List<QuestionnaireResponseDTO> getAll();
     QuestionnaireResponseDTO getById(Long id);

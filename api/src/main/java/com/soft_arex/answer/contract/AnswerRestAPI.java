@@ -14,6 +14,7 @@ public interface AnswerRestAPI {
     @Operation(summary = "add answer in db", description = "добавление отвена на анкету")
     @PostMapping
     void saveAnswer(@RequestBody SubmitAnswerRequest request);
+
     @Operation(summary = "get list answers", description = "получение всех ответов на определенный тест")
     @GetMapping("get/{testId}")
     Page<AnswerResponse> getAnswersForTest(
@@ -21,4 +22,6 @@ public interface AnswerRestAPI {
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "20") int size
     );
+
+
 }

@@ -13,6 +13,11 @@ import java.util.List;
 @RequestMapping("/test")
 public interface QuestionnaireRestApi {
 
+
+    @GetMapping("/active")
+    List<QuestionnaireResponseDTO> getActiveQuestionnaire();
+
+
     @Operation(
             summary = "Update questionnaire status",
             description = "Обновляет статус анкеты по её идентификатору (активна/неактивна)."

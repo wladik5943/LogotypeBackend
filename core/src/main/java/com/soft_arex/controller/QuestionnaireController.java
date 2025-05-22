@@ -20,6 +20,11 @@ public class QuestionnaireController implements QuestionnaireRestApi {
 
 
     @Override
+    public List<QuestionnaireResponseDTO> getActiveQuestionnaire() {
+        return questionnaireService.getActiveQuestionnaire();
+    }
+
+    @Override
     public QuestionnaireResponseDTO updateStatus(Long id) {
         return questionnaireService.updateStatus(id);
     }

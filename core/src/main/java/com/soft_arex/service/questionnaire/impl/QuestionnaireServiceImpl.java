@@ -30,6 +30,11 @@ public class QuestionnaireServiceImpl implements QuestionnaireService {
     private final UserRepository  userRepository;
 
     @Override
+    public List<QuestionnaireResponseDTO> getActiveQuestionnaire() {
+        return questionnaireRepository.findActiveQuestionnaire().stream().map(questionnaireMapper::toResponse).toList();
+    }
+
+    @Override
     public QuestionnaireResponseDTO updateStatus(Long id) {
         Questionnaire q = questionnaireRepository.findById(id)
                 .orElseThrow(() -> new UserException("`questionnaire` not found"));

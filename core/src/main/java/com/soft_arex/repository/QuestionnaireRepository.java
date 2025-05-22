@@ -17,6 +17,8 @@ import java.util.Optional;
 public interface QuestionnaireRepository extends JpaRepository<Questionnaire, Long> {
 
 
+    @Query("SELECT q FROM Questionnaire q WHERE q.active = true")
+    Optional<Questionnaire> findActiveQuestionnaire();
 
     @EntityGraph(attributePaths = {"fields"})
     @Query("SELECT q FROM Questionnaire q WHERE q.id = :id")
