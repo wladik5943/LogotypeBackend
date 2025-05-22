@@ -6,13 +6,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 public class WebConfig implements WebMvcConfigurer {
 
-    @Value("${cors.allowed-origins}")
-    private String allowedOrigins;
+
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins(allowedOrigins.split(","))
+                .allowedOrigins("https://softarex-ui.netlify.app")
                 .allowedMethods("*")
                 .allowCredentials(true);
     }
